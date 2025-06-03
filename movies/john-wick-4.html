@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>John Wick 4 - NobarFlix</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="action-header">
+    <div class="logo">
+      <img src="../images/NobarFlix.png" alt="NobarFlix Logo" />
+    </div>
+    <nav class="action-nav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../movies.html">Movies</a></li>
+        <li><a href="../tvshows.html">TV Shows</a></li>
+        <li><a href="../franchise.html">Franchise</a></li>
+      </ul>
+    </nav>
+    <div class="action-search">
+      <input type="text" placeholder="Search..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+  </header>
+
+  <section class="explosive-hero" style="--hero-image: url('https://image.tmdb.org/t/p/original/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg')">
+    <div class="hero-content">
+      <h1>JOHN WICK: CHAPTER 4</h1>
+      <p class="subtitle">4K • Dolby Atmos • Action Packed</p>
+      <div class="hero-buttons">
+        <a href="#" class="play-button" onclick="playMovie()">▶ Play Now</a>
+        <a href="#trailer" class="trailer-button">🎬 Trailer</a>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <section class="movie-section">
+    <div class="movie-detail-container">
+      <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="John Wick 4" class="movie-poster-large" />
+      <div class="movie-detail-info">
+        <h1 class="movie-title">John Wick: Chapter 4</h1>
+        <div class="movie-meta-large">
+          <span>2023</span>
+          <span class="movie-rating-large">★ 8.2/10</span>
+          <span>2h 49m</span>
+          <span>R</span>
+        </div>
+        <p class="movie-tagline">No way back. One way out.</p>
+        <p class="movie-synopsis">
+          With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. 
+          But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances 
+          across the globe and forces that turn old friends into foes.
+        </p>
+        <div class="movie-details">
+          <div class="detail-item">
+            <span class="detail-label">Genre:</span>
+            <span>Action, Crime, Thriller</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Director:</span>
+            <span>Chad Stahelski</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Cast:</span>
+            <span>Keanu Reeves, Donnie Yen, Bill Skarsgård</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Release Date:</span>
+            <span>March 24, 2023</span>
+          </div>
+        </div>
+        <a href="#" class="play-button" onclick="playMovie()">▶ Watch Now</a>
+      </div>
+    </div>
+    
+    <h2 class="section-title" id="trailer">🎥 Official Trailer</h2>
+    <iframe src="https://www.youtube.com/embed/qEVUtrk8_B4" allowfullscreen></iframe>
+    
+    <h2 class="section-title">📝 User Reviews</h2>
+    <form onsubmit="return submitReview()">
+      <input type="text" placeholder="Your Name" required />
+      <textarea placeholder="Your Review" required></textarea>
+      <button type="submit" class="play-button">Submit Review</button>
+    </form>
+  </section>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

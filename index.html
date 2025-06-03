@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NobarFlix - Movie Streaming Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Modern Streaming Platform Styles */
+    :root {
+        --primary: #e50914;
+        --primary-dark: #b2070f;
+        --secondary: #221f1f;
+        --tertiary: #f5f5f1;
+        --dark-bg: #141414;
+        --light-bg: #222222;
+        --text-primary: #ffffff;
+        --text-secondary: #e5e5e5;
+        --text-tertiary: #b3b3b3;
+        --transition-speed: 0.3s;
+    }
+
+    /* Base Reset & Typography */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-primary);
+        line-height: 1.5;
+    }
+
+    /* Header Styles */
+    .action-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1rem 4%;
+        z-index: 1000;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .action-nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .action-nav a {
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color var(--transition-speed);
+    }
+
+    .action-nav a:hover,
+    .action-nav a.active {
+        color: var(--primary);
+    }
+
+    /* Dropdown Menu */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: var(--light-bg);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .dropdown-content a {
+        color: var(--text-primary);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color var(--transition-speed);
+    }
+
+    .dropdown-content a:hover {
+        background-color: var(--primary);
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropbtn {
+        background-color: transparent;
+        color: var(--text-primary);
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .action-search {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .action-search input {
+        background-color: rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: var(--text-primary);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        width: 200px;
+        transition: width var(--transition-speed);
+    }
+
+    .action-search input:focus {
+        width: 250px;
+        outline: none;
+        border-color: var(--primary);
+    }
+
+    .action-search button {
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        margin-left: -30px;
+    }
+
+    /* Hero Section */
+    .explosive-hero {
+        height: 100vh;
+        min-height: 700px;
+        position: relative;
+        background: linear-gradient(to top, var(--dark-bg) 0%, transparent 50%), 
+                    url('https://keyart.firstfocusinternational.com/wp-content/uploads/2020/12/13175693244f18772338d9b6.24182523.jpg') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+    }
+
+    .hero-content {
+        max-width: 600px;
+        z-index: 2;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .play-button, .trailer-button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all var(--transition-speed);
+    }
+
+    .play-button {
+        background-color: var(--primary);
+        color: var(--text-primary);
+    }
+
+    .play-button:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+    }
+
+    .trailer-button {
+        background-color: rgba(109, 109, 110, 0.7);
+        color: var(--text-primary);
+    }
+
+    .trailer-button:hover {
+        background-color: rgba(109, 109, 110, 0.9);
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(20,20,20,1) 0%, rgba(20,20,20,0) 50%, rgba(20,20,20,0) 100%);
+    }
+
+    /* Content Sections */
+    .movie-section {
+        padding: 4rem 4%;
+    }
+
+    .dark-section {
+        background-color: var(--light-bg);
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Movie Grid */
+    .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .movie-card {
+        background: #222;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .movie-card:hover {
+        transform: scale(1.05);
+    }
+
+    .movie-poster {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .movie-info {
+        padding: 15px;
+    }
+
+    .movie-info h3 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .movie-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    .movie-rating {
+        color: #f5c518;
+        font-weight: bold;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        background-color: var(--primary);
+        color: white;
+    }
+
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #444;
+    }
+
+    th {
+        background-color: var(--light-bg);
+        font-weight: 600;
+    }
+
+    /* Form Styles */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        background-color: #333;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: var(--text-primary);
+    }
+
+    textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+
+    button[type="submit"] {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color var(--transition-speed);
+    }
+
+    button[type="submit"]:hover {
+        background-color: var(--primary-dark);
+    }
+
+    /* Iframe Styles */
+    iframe {
+        width: 100%;
+        height: 500px;
+        border: none;
+        border-radius: 8px;
+    }
+
+    /* List Styles */
+    ul, ol {
+        margin: 1rem 0 2rem 2rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .hero-content h1 {
+            font-size: 3rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .action-nav ul {
+            display: none;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .explosive-hero {
+            min-height: 600px;
+        }
+
+        .movie-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        .movie-poster {
+            height: 225px;
+        }
+
+        .action-search input {
+            width: 150px;
+        }
+
+        .action-search input:focus {
+            width: 180px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+        }
+
+        iframe {
+            height: 300px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header class="action-header">
+    <div class="logo">
+      <img src="G:\My Drive\UNPAM\PEMROGRAMAN WEB I\Web Tugas Akhir\NobarFlix\NobarFlix.png" alt="NobarFlix Logo" />
+    </div>
+    <nav class="action-nav">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="tvshows.html">TV Shows</a></li>
+        <li><a href="franchise.html">Franchise</a></li>
+        <li class="dropdown">
+          <button class="dropbtn">Genres <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content" id="genreDropdown">
+            <!-- Will be populated by JavaScript -->
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="action-search">
+      <input type="text" id="searchInput" placeholder="Search movies..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+  </header>
+
+  <section class="explosive-hero">
+    <div class="hero-content">
+      <h1>EXPERIENCE THE ACTION</h1>
+      <p class="subtitle">4K • Dolby • Heroic Legacy &copy;</p>
+      <div class="hero-buttons">
+        <a href="#" class="play-button" onclick="playMovie()">▶ Play Now</a>
+        <a href="#" class="trailer-button">🎬 Trailer</a>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <!-- New Releases -->
+  <section class="movie-section">
+    <h2 class="section-title">🎬 New Releases</h2>
+    <div class="movie-grid" id="new-releases"></div>
+  </section>
+
+  <!-- Top Series -->
+  <section class="movie-section dark-section">
+    <h2 class="section-title">📺 Top Series</h2>
+    <div class="movie-grid" id="top-series"></div>
+  </section>
+
+  <!-- Best Rated Films -->
+  <section class="movie-section">
+    <h2 class="section-title">⭐ Best Rated Films</h2>
+    <div class="movie-grid" id="best-rated"></div>
+  </section>
+
+  <!-- Review Form -->
+  <section class="movie-section dark-section">
+    <h2 class="section-title">💬 Leave a Review</h2>
+    <form onsubmit="return submitReview()">
+      <input type="text" placeholder="Your Name" required />
+      <textarea placeholder="Your Review" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <script>
+    // Movie data with genres
+    const movieData = [
+      { 
+        id: 1,
+        title: "John Wick 4", 
+        year: 2023, 
+        rating: 8.2, 
+        poster: "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+        genres: ["Action", "Thriller"],
+        isNew: true,
+        isSeries: false,
+        isTopRated: true
+      },
+      { 
+        id: 2,
+        title: "Mission: Impossible", 
+        year: 2023, 
+        rating: 8.0, 
+        poster: "https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+        genres: ["Action", "Adventure"],
+        isNew: true,
+        isSeries: false,
+        isTopRated: true
+      },
+      { 
+        id: 3,
+        title: "The Batman", 
+        year: 2022, 
+        rating: 7.9, 
+        poster: "https://image.tmdb.org/t/p/w500/seyWFgGInaLqW7nOZvu0ZC95rtx.jpg",
+        genres: ["Action", "Crime", "Drama"],
+        isNew: false,
+        isSeries: false,
+        isTopRated: true
+      },
+      { 
+        id: 4,
+        title: "Dune", 
+        year: 2021, 
+        rating: 8.0, 
+        poster: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+        genres: ["Sci-Fi", "Adventure"],
+        isNew: false,
+        isSeries: false,
+        isTopRated: true
+      },
+      { 
+        id: 5,
+        title: "No Time to Die", 
+        year: 2021, 
+        rating: 7.3, 
+        poster: "https://image.tmdb.org/t/p/w500/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+        genres: ["Action", "Thriller"],
+        isNew: false,
+        isSeries: false,
+        isTopRated: false
+      },
+      { 
+        id: 6,
+        title: "Stranger Things", 
+        year: 2016, 
+        rating: 8.7, 
+        poster: "https://i5.walmartimages.com/seo/Netflix-Stranger-Things-Three-Seasons-One-Sheet-Wall-Poster-14-725-x-22-375_a5922d22-99c4-4fcc-8680-12f0e60a8735.369c0117f826a908ab8505a97c931f0e.jpeg",
+        genres: ["Sci-Fi", "Horror", "Drama"],
+        isNew: false,
+        isSeries: true,
+        isTopRated: true
+      },
+      { 
+        id: 7,
+        title: "The Mandalorian", 
+        year: 2019, 
+        rating: 8.5, 
+        poster: "https://image.tmdb.org/t/p/w500/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg",
+        genres: ["Sci-Fi", "Action", "Adventure"],
+        isNew: true,
+        isSeries: true,
+        isTopRated: true
+      },
+      { 
+        id: 8,
+        title: "Oppenheimer", 
+        year: 2023, 
+        rating: 8.5, 
+        poster: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+        genres: ["Drama", "History"],
+        isNew: true,
+        isSeries: false,
+        isTopRated: true
+      },
+      { 
+        id: 9,
+        title: "Peaky Blinders", 
+        year: 2013, 
+        rating: 8.8, 
+        poster: "https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
+        genres: ["Crime", "Drama"],
+        isNew: false,
+        isSeries: true,
+        isTopRated: true
+      },
+      { 
+        id: 10,
+        title: "Avatar: The Way of Water", 
+        year: 2022, 
+        rating: 7.6, 
+        poster: "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
+        genres: ["Sci-Fi", "Adventure"],
+        isNew: true,
+        isSeries: false,
+        isTopRated: false
+      }
+    ];
+
+    // Extract all unique genres
+    const allGenres = [...new Set(movieData.flatMap(movie => movie.genres))];
+
+    // Load all content when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      loadGenres();
+      loadContent();
+      setupSearch();
+    });
+
+    // Load genres into dropdown
+    function loadGenres() {
+      const genreDropdown = document.getElementById('genreDropdown');
+      genreDropdown.innerHTML = '';
+      
+      // Add "All Genres" option
+      const allGenresLink = document.createElement('a');
+      allGenresLink.href = '#';
+      allGenresLink.textContent = 'All Genres';
+      allGenresLink.onclick = function(e) {
+        e.preventDefault();
+        filterByGenre('all');
+      };
+      genreDropdown.appendChild(allGenresLink);
+      
+      // Add each genre as an option
+      allGenres.forEach(genre => {
+        const genreLink = document.createElement('a');
+        genreLink.href = '#';
+        genreLink.textContent = genre;
+        genreLink.onclick = function(e) {
+          e.preventDefault();
+          filterByGenre(genre);
+        };
+        genreDropdown.appendChild(genreLink);
+      });
+    }
+
+    // Load all content sections
+    function loadContent() {
+      loadSection('new-releases', movieData.filter(movie => movie.isNew));
+      loadSection('top-series', movieData.filter(movie => movie.isSeries));
+      loadSection('best-rated', movieData.filter(movie => movie.isTopRated).sort((a, b) => b.rating - a.rating));
+    }
+
+    // Load a specific section
+    function loadSection(sectionId, movies) {
+      const section = document.getElementById(sectionId);
+      section.innerHTML = '';
+      
+      movies.forEach(movie => {
+        section.innerHTML += createMovieCard(movie);
+      });
+    }
+
+    // Create movie card HTML
+    function createMovieCard(movie) {
+      const badges = [];
+      if (movie.isNew) badges.push('<span class="badge">New</span>');
+      if (movie.isTopRated) badges.push('<span class="badge" style="background-color: #f5c518;">Top Rated</span>');
+      
+      return `
+        <a href="${movie.isSeries ? 'tvshows.html' : 'movies.html'}" class="movie-card">
+          <img src="${movie.poster}" alt="${movie.title}" class="movie-poster" />
+          <div class="movie-info">
+            <h3>${movie.title}</h3>
+            <div class="movie-meta">
+              <span>${movie.year}</span>
+              <span class="movie-rating">★ ${movie.rating}</span>
+            </div>
+            ${badges.length > 0 ? `<div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">${badges.join('')}</div>` : ''}
+          </div>
+        </a>
+      `;
+    }
+
+    // Filter by genre
+    function filterByGenre(genre) {
+      if (genre === 'all') {
+        loadContent();
+        return;
+      }
+      
+      const filteredMovies = movieData.filter(movie => movie.genres.includes(genre));
+      loadSection('new-releases', filteredMovies.filter(movie => movie.isNew));
+      loadSection('top-series', filteredMovies.filter(movie => movie.isSeries));
+      loadSection('best-rated', filteredMovies.filter(movie => movie.isTopRated).sort((a, b) => b.rating - a.rating));
+    }
+
+    // Setup search functionality
+    function setupSearch() {
+      const searchInput = document.getElementById('searchInput');
+      
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        if (searchTerm.length < 2) {
+          loadContent();
+          return;
+        }
+        
+        const filteredMovies = movieData.filter(movie => 
+          movie.title.toLowerCase().includes(searchTerm) ||
+          movie.genres.some(genre => genre.toLowerCase().includes(searchTerm))
+        );
+        
+        loadSection('new-releases', filteredMovies.filter(movie => movie.isNew));
+        loadSection('top-series', filteredMovies.filter(movie => movie.isSeries));
+        loadSection('best-rated', filteredMovies.filter(movie => movie.isTopRated).sort((a, b) => b.rating - a.rating));
+      });
+    }
+
+    // Alert saat klik play
+    function playMovie() {
+      alert("Film dimulai... Nikmati aksi!");
+    }
+
+    // Confirm saat kirim review
+    function submitReview() {
+      const confirmSend = confirm("Yakin ingin mengirim review?");
+      if (confirmSend) {
+        const name = prompt("Siapa nama Anda?");
+        alert("Terima kasih atas review-nya, " + (name || "Anonymous") + "!");
+        return false;
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>

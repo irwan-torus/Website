@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Franchise - NobarFlix</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="action-header">
+    <div class="logo">
+      <img src="G:\My Drive\UNPAM\PEMROGRAMAN WEB I\Web Tugas Akhir\NobarFlix\NobarFlix.png" alt="NobarFlix Logo" />
+    </div>
+    <nav class="action-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="tvshows.html">TV Shows</a></li>
+        <li><a href="franchise.html" class="active">Franchise</a></li>
+      </ul>
+    </nav>
+    <div class="action-search">
+      <input type="text" placeholder="Search..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+  </header>
+
+  <section class="explosive-hero" style="--hero-image: url('https://image.tmdb.org/t/p/original/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg')">
+    <div class="hero-content">
+      <h1>ICONIC MOVIE FRANCHISES</h1>
+      <p class="subtitle">Collections • Sagas • Universes</p>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <section class="movie-section">
+    <h2 class="section-title">🎬 Popular Franchises</h2>
+    <div class="movie-grid" id="franchises">
+      <!-- Sample Franchise 1 -->
+      <a href="franchise/john-wick.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg" alt="John Wick" class="movie-poster" />
+        <div class="movie-info">
+          <h3>John Wick</h3>
+          <div class="movie-meta">
+            <span>4 Movies</span>
+            <span>Since 2014</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 2 -->
+      <a href="franchise/mission-impossible.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg" alt="Mission: Impossible" class="movie-poster" />
+        <div class="movie-info">
+          <h3>Mission: Impossible</h3>
+          <div class="movie-meta">
+            <span>7 Movies</span>
+            <span>Since 1996</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 3 -->
+      <a href="franchise/marvel-cinematic-universe.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="Marvel Cinematic Universe" class="movie-poster" />
+        <div class="movie-info">
+          <h3>Marvel Cinematic Universe</h3>
+          <div class="movie-meta">
+            <span>32 Movies</span>
+            <span>Since 2008</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 4 -->
+      <a href="franchise/fast-and-furious.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg" alt="Fast & Furious" class="movie-poster" />
+        <div class="movie-info">
+          <h3>Fast & Furious</h3>
+          <div class="movie-meta">
+            <span>10 Movies</span>
+            <span>Since 2001</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 5 -->
+      <a href="franchise/james-bond.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg" alt="James Bond" class="movie-poster" />
+        <div class="movie-info">
+          <h3>James Bond</h3>
+          <div class="movie-meta">
+            <span>25 Movies</span>
+            <span>Since 1962</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 6 -->
+      <a href="franchise/harry-potter.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Harry Potter" class="movie-poster" />
+        <div class="movie-info">
+          <h3>Harry Potter</h3>
+          <div class="movie-meta">
+            <span>8 Movies</span>
+            <span>Since 2001</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 7 -->
+      <a href="franchise/the-dark-knight.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/seyWFgGInaLqW7nOZvu0ZC95rtx.jpg" alt="The Dark Knight" class="movie-poster" />
+        <div class="movie-info">
+          <h3>The Dark Knight Trilogy</h3>
+          <div class="movie-meta">
+            <span>3 Movies</span>
+            <span>2005-2012</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Sample Franchise 8 -->
+      <a href="franchise/star-wars.html" class="movie-card">
+        <img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" alt="Star Wars" class="movie-poster" />
+        <div class="movie-info">
+          <h3>Star Wars</h3>
+          <div class="movie-meta">
+            <span>12 Movies</span>
+            <span>Since 1977</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Basic functionality without external JS
+    function viewFranchise() {
+      alert("Mengarahkan ke halaman franchise...");
+    }
+  </script>
+</body>
+</html>
