@@ -34,7 +34,7 @@
 
 1. Clone atau download repositori ini:
    ```bash
-   git clone [https://github.com/username/nobarflix.git]
+   git clone https://github.com/irwan-torus/Website.git
    cd nobarflix
    ```
 
