@@ -80,4 +80,4 @@ Proyek ini bersifat open-source dan bebas digunakan untuk keperluan belajar dan 
 ## 🔗 Kontak
 
 > Dibuat dengan ❤️ oleh [Irwan.Torus]  
-> ✉️ [remotevnc00@gmail.com] | 🌐 [LinkedIn atau GitHub Anda]
+> ✉️ [remotevnc00@gmail.com] | 🌐 [LinkedIn : https://id.linkedin.com/in/irwanto-sitorus-241839200]
